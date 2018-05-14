@@ -1,16 +1,22 @@
-mysql:
+db:
   restart: always
   image: mysql
   volumes:
     - ~/.docker/mysql:/var/lib/mysql
   environment:
-    - MYSQL_ROOT_PASSWORD=root
+    MYSQL_ROOT_PASSWORD: m36QqxaB
+  ports:
+    - 3306:3306
 
-app:
+web:
   restart: always
   build: .
   working_dir: /app
+  command: bundle exec rails s -p 3000 -b 0.0.0.0
   volumes:
     - .:/app
   links:
-    - mysql
+    - db
+  ports:
+    - 3000:3000
+
