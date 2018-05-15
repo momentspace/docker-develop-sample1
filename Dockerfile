@@ -12,3 +12,5 @@ ADD Gemfile.lock /app/
 WORKDIR /app
 RUN bundle install
 
+ADD . /app
+
